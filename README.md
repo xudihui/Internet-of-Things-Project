@@ -1,5 +1,5 @@
 # Internet-of-Things-Project
-上汽大通智能车窗项目
+智能车窗项目
 
 ## 主要链接
 电脑显示端(响应实时开关窗)：http://47.101.66.6/index.html
