@@ -1,77 +1,203 @@
-<!DOCTYPE html>
-<html lang="en" >
-
+<!--
+Author: xudihui 20180620
+-->
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>上汽大通自动感应车窗系统</title>
-      <link rel="stylesheet" href="css/style.css"> 
-</head>
-
-<body>
-
-  <div class="background">
-<div class="container">	
-	<svg id="back">
-		<radialGradient id="SVGID_1_" cx="0" cy="0" r="320.8304" gradientUnits="userSpaceOnUse">
-			<stop  offset="0" style="stop-color:#FFDE17;stop-opacity:0.7"/>
-			<stop  offset="1" style="stop-color:#FFF200;stop-opacity:0"/>
-		</radialGradient>
-		<path id="sunburst" style="fill:url(#SVGID_1_);" d="M0,319.7c-18.6,0-37.3-1.6-55.5-4.8L-7.8,41.4c5.1,0.9,10.6,0.9,15.7,0L56,314.8C37.6,318,18.8,319.7,0,319.7z
-	 M-160.8,276.6c-32.5-18.8-61.3-42.9-85.5-71.6L-34,26.2c3.4,4.1,7.4,7.4,12,10.1L-160.8,276.6z M161.3,276.4L22.1,36.2
-	c4.5-2.6,8.6-6,12-10.1l212.6,178.5C222.5,233.4,193.8,257.6,161.3,276.4z M-302.5,108.3C-315.4,73-321.9,36-322-1.8l277.6-0.5
-	c0,5.3,0.9,10.4,2.7,15.2L-302.5,108.3z M302.6,107.8L41.8,12.8c1.7-4.7,2.6-9.7,2.6-14.9c0-0.3,0-0.6,0-1H322l0-1.3l0,1.9
-	C322,35.4,315.5,72.5,302.6,107.8z M-41.8-17.5l-261-94.5c12.8-35.4,31.6-68,55.8-96.9L-34.1-30.8C-37.5-26.8-40.1-22.3-41.8-17.5z
-	 M41.7-17.7c-1.8-4.8-4.4-9.3-7.8-13.3l212-179.2c24.3,28.8,43.3,61.3,56.3,96.6L41.7-17.7z M-22.2-40.8l-139.6-240
-	c32.7-19,68.1-32,105.2-38.6L-8-46.1C-13-45.2-17.8-43.4-22.2-40.8z M22-40.9c-4.4-2.6-9.2-4.3-14.2-5.1l47.1-273.6
-	c37.2,6.4,72.7,19.2,105.4,38L22-40.9z"/>
-	</svg>
-	<nav>
-		<ul>
-			<li><a id="button-snow" class="active"><i class="wi wi-snow"></i></a></li>
-			<li><a id="button-wind"><i class="wi wi-strong-wind"></i></a></li>
-			<li><a id="button-thunder"><i class="wi wi-lightning"></i></a></li>
-			<li><a id="button-sun"><i class="wi wi-day-sunny"></i></a></li>
-		</ul>
-	</nav>
-	<div id="card" class="weather">
-		<svg id="inner">
-			<defs>
-				<path id="leaf" d="M41.9,56.3l0.1-2.5c0,0,4.6-1.2,5.6-2.2c1-1,3.6-13,12-15.6c9.7-3.1,19.9-2,26.1-2.1c2.7,0-10,23.9-20.5,25 c-7.5,0.8-17.2-5.1-17.2-5.1L41.9,56.3z"/>
-			</defs>
-			<circle id="sun" style="fill: #F7ED47" cx="0" cy="0" r="50"/>
-			<g id="layer3"></g>
-			<g id="cloud3" class="cloud"></g>
-			<g id="layer2"></g>
-			<g id="cloud2" class="cloud"></g>
-			<g id="layer1"></g>
-			<g id="cloud1" class="cloud"></g>
-		</svg>
-		<div class="details">
-			<div class="temp"><span id='temperature'>20</span><span>℃</span></div>
-			<div class="right">
-				<div id="date">Monday 22 August</div>
-				<div id="summary"></div>
-			</div>
+<title>WEB端——天气系统</title>
+<!-- for-mobile-apps -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="Slide Weather Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!-- //for-mobile-apps -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+		    var open = $('#open');
+			var close = $('#close');
+			var upload = $('#upload');
+			open.click(function(){
+			   $('#win').attr('class','animated slideOutDown')
+			})
 			
+			close.click(function(){
+			   $('#win').attr('class','animated slideInUp')
+			})
+			upload.click(function(){
+			   alert('上传天气数据至APP端')
+			})
+
+			setInterval(() => {
+			//每秒钟来请求服务器，不虚
+			$.get("/tuy.get", {
+				name: "PowerSwitch"
+			}, function (data) {
+				if (data.code === 200) {
+					if(data.data.value == 1){
+						$('#win').attr('class','animated slideOutDown')
+					}
+					else{
+						$('#win').attr('class','animated slideInUp')
+					}
+					console.log('返回数据：', data)
+				}
+			});
+		}, 1500);
+
+
+			$('.hub-slider-slides ul').hubSlider({
+				selector: $('li'),
+				button: {
+					next: $('.hub-slider-arrow_next'),
+					prev: $('.hub-slider-arrow_prev')
+				},
+				transition: '0.7s',
+				startOffset: 30,
+				auto: false,
+				time: 2 // secondly
+			});
+			
+        })
+    </script>
+	<!--skycons-icons-->
+<script src="js/skycons.js"></script>
+<!--//skycons-icons-->
+
+</head>
+<body>
+<div class="content" id="Main-Content">
+	<h1>WEB端——天气系统</h1>
+	<div class="w3ls-slider" style='visibility:hidden'>
+		<div class="hub-slider">
+			<div class="hub-slider-slides">
+				<ul>
+					<li>
+						<div class="w3layouts-info w3layouts-info3">
+							<div class="w3layouts-info-top">
+								<h3>22°c</h3>
+								<h4>Sunny</h4>
+								<p>浦东</p>
+							</div>
+							<canvas id="partly-cloudy-day" width="40" height="40"></canvas>
+							<div class="w3layouts-info-bottom">
+								<h5>湿度：10%</h5>
+								<p>晴</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="w3layouts-info w3layouts-info2">
+							<div class="w3layouts-info-top">
+								<h3>20°c</h3>
+								<h4>Cloudy</h4>
+								<p>普陀</p>
+							</div>
+							<canvas id="cloudy" width="40" height="40"></canvas>
+							<div class="w3layouts-info-bottom">
+								<h5>湿度：20%</h5>
+								<p>多云</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="w3layouts-info">
+							<div class="w3layouts-info-top">
+								<h3>17°c</h3>
+								<h4>Rainy</h4>
+								<p>长宁</p>
+							</div>
+							<canvas id="rain" width="40" height="40"></canvas>
+							<div class="w3layouts-info-bottom">
+								<h5>湿度：80%</h5>
+								<p>暴雨</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="w3layouts-info w3layouts-info1">
+							<div class="w3layouts-info-top">
+								<h3>-5°c</h3>
+								<h4>Snowy</h4>
+								<p>宝山</p>
+							</div>
+							<canvas id="snow" width="40" height="40"></canvas>
+							<div class="w3layouts-info-bottom">
+								<h5>湿度：40%</h5>
+								<p>大雪</p>
+							</div>
+						</div>
+
+					</li>
+                    <li>
+						<div class="w3layouts-info w3layouts-info5">
+							<div class="w3layouts-info-top">
+								<h3>5°c</h3>
+								<h4>Wind</h4>
+								<p>金山</p>
+							</div>
+							<canvas id="wind" width="40" height="40"></canvas>
+							<div class="w3layouts-info-bottom">
+								<h5>湿度：5%</h5>
+								<p>沙尘暴</p>
+							</div>
+						</div>
+
+					</li>					
+				</ul>
+			</div>
+			<div class="hub-slider-controls">
+				<button class="hub-slider-arrow hub-slider-arrow_next">↑</button>
+				<button class="hub-slider-arrow hub-slider-arrow_prev">↓</button>
+			</div>
 		</div>
 	</div>
-	<svg id="outer"></svg>
-	<p>车窗目前状态：<b id='openStatus'>开</b></p>
-	<p>控制开关：<button id='open'>开窗</button> | <button id='close'>关窗</button></p>
-	<p>收到美龙发的SmartCarWindow：值<b id='WaterSensorState'></b></p>
-	<p>我发给美龙的PowerSwitch：值<b id='PowerSwitch'></b></p>
+	
+	
+	<div class='car animated zoomInUp'>
+	   <img src='images/a.png' />	
+	   <img id='win' class='hide' src='images/c.png' />	
+	   <img src='images/b.png' />	
+	</div>
+	<!-- copyright -->
+	<div class="copyright" style='display:none'>
+	
+	  <a id='open' class="button button-3d button-action button-pill">开窗</a>
+	  <a  id='close' class="button button-3d button-caution">关窗</a>
+	  <a id='upload' class="button button-3d button-primary button-rounded">上传天气状态</a>
+	</div>
+	<!-- //copyright -->
+	<script>
+				 var icons = new Skycons({"color": "#FFD700"}),
+					  list  = [
+						"clear-day"
+					  ],
+					  i;
 
+				  for(i = list.length; i--; )
+					icons.set(list[i], list[i]);
+
+				  icons.play();
+		</script>
+		<script>
+				 var icons = new Skycons({"color": "#f5f5f5"}),
+					  list  = [
+						"clear-night", "partly-cloudy-day",
+						"partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+						"fog"
+					  ],
+					  i;
+
+				  for(i = list.length; i--; )
+					icons.set(list[i], list[i]);
+
+				  icons.play();
+		</script>
+	<script type="text/javascript" src="js/hubslider.js"></script>
 </div>
-</div>
-   
-<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js'></script>
-<script  src="js/index.js"></script>
-
-
-
-
 </body>
-
 </html>
