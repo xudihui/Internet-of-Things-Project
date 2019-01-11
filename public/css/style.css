@@ -77,6 +77,23 @@ ul{
 	top:0px;
 	left:0px;
 }
+
+.bus{
+	width:1200px;
+	height:800px;
+  overflow:hidden;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-left:-600px;
+  margin-top:-300px;
+}
+.bus img {
+	width:100%;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
 .content{
 	padding:3em 0;
 }
