@@ -4,7 +4,7 @@
 ## 主要链接
 电脑显示端(响应实时开关窗)：http://47.101.66.6/index.html
 手持设备端(感应天气数据，下发开关窗指令)：http://47.101.66.6/phone.html
-手持设备debug模式(韩美龙调试专用):http://47.101.66.6/phone.html?debug=true
+手持设备debug模式(硬件调试专用):http://47.101.66.6/phone.html?debug=true
 
 ## 硬编码规范细则
 #### 字段01:WaterSensorState：
