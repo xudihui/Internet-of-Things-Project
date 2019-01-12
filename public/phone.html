@@ -42,6 +42,9 @@ Author: xudihui 20180620
 		.debug {
 			display: none
 		}
+		#sun{
+			transform:matrix(1, 0, 0, 1, 340, 103.5);
+		}
 
 		html,
 		body,
@@ -269,7 +272,7 @@ Author: xudihui 20180620
 							<g id="cloud1" class="cloud"></g>
 						</svg>
 						<div class="details">
-							<div class="temp">20<span>c</span></div>
+							<div class="temp">20<span>℃</span></div>
 							<div class="right">
 								<div id="date">Monday 22 August</div>
 								<div id="summary"></div>
@@ -893,6 +896,7 @@ Author: xudihui 20180620
 					if (clouds[i].offset > -(sizes.card.width * 1.5)) clouds[i].offset += settings.windSpeed / (i + 1);
 					if (clouds[i].offset > sizes.card.width * 2.5) clouds[i].offset = -(sizes.card.width * 1.5);
 					clouds[i].group.transform('t' + clouds[i].offset + ',' + 0);
+					//document.querySelector('#sun').setAttribute('style','fill: rgb(247, 237, 71); transform:matrix(1, 0, 0, 1, 340, 103.5);')
 				} else {
 					clouds[i].offset += settings.windSpeed / (i + 1);
 					if (clouds[i].offset > sizes.card.width) clouds[i].offset = 0 + (clouds[i].offset - sizes.card.width);

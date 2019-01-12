@@ -217,6 +217,7 @@ Author: xudihui 20180620
 		#back {
 			position: fixed;
 			pointer-events: none;
+			z-index:9;
 		}
 		.closeW{
 			transition:all 4s;
@@ -224,7 +225,7 @@ Author: xudihui 20180620
 			opacity:.7;
 		}
 		.openW{
-			top:200px!important;
+			top:190px!important;
 		}
 	</style>
 </head>
@@ -261,13 +262,14 @@ Author: xudihui 20180620
 					<defs>
 						<path id="leaf" d="M41.9,56.3l0.1-2.5c0,0,4.6-1.2,5.6-2.2c1-1,3.6-13,12-15.6c9.7-3.1,19.9-2,26.1-2.1c2.7,0-10,23.9-20.5,25 c-7.5,0.8-17.2-5.1-17.2-5.1L41.9,56.3z" />
 					</defs>
-					<circle id="sun" style="fill: #F7ED47" cx="0" cy="0" r="50" />
+					
 					<g id="layer3"></g>
 					<g id="cloud3" class="cloud"></g>
 					<g id="layer2"></g>
 					<g id="cloud2" class="cloud"></g>
 					<g id="layer1"></g>
 					<g id="cloud1" class="cloud"></g>
+					<circle id="sun" style="fill: #F7ED47" cx="0" cy="0" r="50" />
 				</svg>
 				<div class="details">
 					<div class="temp">20<span> ℃</span></div>
@@ -289,7 +291,7 @@ Author: xudihui 20180620
 	<p class='debug'>我发给美龙的PowerSwitch：值:<b id='PowerSwitch'></b></p>
 	<div class='bus'>
 		<img src='images/img/c.png' />	
-	   <img id='win' class='closeW' src='images/img/b.png' />	
+	   <img id='win' class='closeW openW' src='images/img/b.png' />	
 	   <img src='images/img/a.png' />	
 	</div>
 	<script>
@@ -359,7 +361,7 @@ Author: xudihui 20180620
 					if(data.data.value == 1){
 						$('#win').attr('class','closeW openW')
 					}
-					else{
+					else if(data.data.value == 0){
 						$('#win').attr('class','closeW')
 					}
 					console.log('返回数据：', data)
@@ -596,7 +598,7 @@ Author: xudihui 20180620
 
 			var line = this['innerRainHolder' + (3 - Math.floor(lineWidth))].path('M0,0 0,' + lineLength).attr({
 				fill: 'none',
-				stroke: currentWeather.type == 'thunder' ? '#777' : '#0000ff',
+				stroke: currentWeather.type == 'thunder' ? '#1890ff' : '#0000ff',
 				strokeWidth: lineWidth
 			});
 
@@ -681,8 +683,8 @@ Author: xudihui 20180620
 
 			var splash = outerSplashHolder.path(points.join(' ')).attr({
 				fill: "none",
-				stroke: type == 'thunder' ? '#777' : '#0000ff',
-				strokeWidth: 1
+				stroke: type == 'thunder' ? '#1890ff' : '#0000ff',
+				strokeWidth: 10
 			});
 
 			// We animate the dasharray to have the line travel along the path 
@@ -1051,13 +1053,14 @@ Author: xudihui 20180620
 				case 'sun':
 					TweenMax.to(sun.node, 4, {
 						x: sizes.card.width / 2,
-						y: sizes.card.height / 2,
+						y: 100,
 						ease: Power2.easeInOut
 					});
 					TweenMax.to(sunburst.node, 4, {
 						scale: 1,
-						opacity: 0.8,
-						y: (sizes.card.height / 2) + (sizes.card.offset.top),
+						opacity: 0.5,
+						y: 100,
+						x: sizes.card.width / 2,
 						ease: Power2.easeInOut
 					});
 					break;
