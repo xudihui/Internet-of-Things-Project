@@ -1,6 +1,6 @@
 ### 推荐安装yarn
 1. 确保 node 版本是 8.10 或以上
-2. npm i yarn -g
+2. 安装yarn npm i yarn -g
 
 ### 快速开始
 
