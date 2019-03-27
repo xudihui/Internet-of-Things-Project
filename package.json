@@ -1,0 +1,28 @@
+{
+  "name": "Internet-of-Things-Project",
+  "version": "1.0.0",
+  "description": "1. 确保 node 版本是 8.10 或以上 2. npm i yarn -g",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xudihui/Internet-of-Things-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xudihui/Internet-of-Things-Project/issues"
+  },
+  "homepage": "https://github.com/xudihui/Internet-of-Things-Project#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
