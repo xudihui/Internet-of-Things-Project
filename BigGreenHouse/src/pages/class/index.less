@@ -1,0 +1,105 @@
+:global{
+
+  .iconfont.icon-other{
+    font-size:.7rem;
+    position: absolute;
+    right:5px;
+    color:#fff;
+    top:5px;
+    z-index:4;
+  }
+  .deviceTop{
+    background: linear-gradient(to right,#63576f,#977f8c);
+    width:100%;
+    height:5rem;
+    padding-top: 1.2rem;
+    position: relative;
+    .am-flexbox-item{
+      text-align:center;
+      font-size:1rem;
+      color:#fff;
+      p{
+        font-size:.5rem
+      }
+    }
+    .iconfont{
+      font-size:1rem;
+      color:#fff;
+    }
+  }
+  .deviceContent{
+    .am-flexbox-item{
+      text-align:center;
+      font-size:.2rem;
+      &:nth-child(1){
+        .iconfont,p{
+          color:green
+        }
+      }
+      &:nth-child(3){
+        .iconfont,p{
+          color:#ff3300
+        }
+      }
+      p{
+        font-size:.2rem
+      }
+    }
+  }
+  .my-drawer {
+    position: absolute;
+    width:7.5rem;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .my-drawer .am-drawer-sidebar {
+    background:linear-gradient(to bottom,#022b61,#1877c6);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    p{
+      text-align:center;
+    }
+    .icon-hulianwangyingxiao-{
+      font-size:1.5rem;
+      color:rgb(239, 95, 85);
+    }
+    span{
+      color:#fff;font-size:.4rem;margin-top:-.3rem;
+      display: inherit;
+      padding-bottom:.3rem;
+    }
+    .item{
+      padding:.1rem;
+      background:rgba(255,255,255,.5);
+      margin-bottom:1px;
+      .icon-chuanganqi-f{
+        font-size:.7rem;
+        color:#fff
+      }
+      .name{
+        font-size:.3rem;
+        *{
+          font-size:.3rem;
+          color:#333
+        }
+        
+      }
+      .note{
+        font-size:.1rem;
+        *{
+          font-size:.1rem;
+          color:#0d634c
+        }
+        
+      }
+    }
+  }
+  .my-drawer .am-drawer-sidebar .am-list {
+    width: 300px;
+    padding: 0;
+  }
+  .am-drawer.am-drawer-left .am-drawer-draghandle, .am-drawer.am-drawer-right .am-drawer-draghandle{
+    width:0px
+  }
+
+}
