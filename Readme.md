@@ -4,6 +4,5 @@
 3. yarn 
 4. 初始化 commit格式，需要先安装commitizen模块，非必须，主要是规范提交格式：commitizen init cz-conventional-changelog --save --save-exact
 
-```
 ### FAQ
 > 如有问题,可以发邮件联系我：xudihui@xudihui.com
