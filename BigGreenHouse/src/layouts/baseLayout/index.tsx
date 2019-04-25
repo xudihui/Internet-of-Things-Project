@@ -1,30 +1,40 @@
-import React from 'react';
+import React, { Component, ReactElement } from 'react'
 import { TabBar } from 'antd-mobile';
 import router from 'umi/router';
 import 'antd-mobile/dist/antd-mobile.css';
-import styles from './baseLayout.less';
+import './index.less'
 
-const TabBarData = [
+
+interface location {
+  pathname: string
+}
+
+interface props {
+  location: location;
+}
+
+interface tabBar {
+  id: string;
+  name: string;
+  icon: ReactElement;
+  selectedicon: ReactElement;
+  url: string;
+}
+
+const TabBarData: Array<tabBar> = [
   {
     id: 'home',
-    name: '监控视频',
+    name: '主页',
     icon: require('../../assets/recycleH5_07.png'),
     selectedicon: require('../../assets/recycleH5_02.png'),
     url: '/home',
   },
   {
     id: 'info',
-    name: '设备消息',
+    name: '历史消息',
     icon: require('../../assets/recycleH5_03.png'),
     selectedicon: require('../../assets/recycleH5_06.png'),
     url: '/info',
-  },
-  {
-    id: 'control',
-    name: '按钮开关',
-    icon: require('../../assets/recycleH5_031.png'),
-    selectedicon: require('../../assets/recycleH5_032.png'),
-    url: '/control',
   },
   {
     id: 'my',
@@ -35,10 +45,11 @@ const TabBarData = [
   }
 ];
 
-class BaseLayout extends React.Component {
+
+class BaseLayout extends Component<props> {
 
   isTabBarSelect = (url) => {
-    const {location: {pathname}} = this.props;
+    const { location: { pathname } } = this.props;
     if (pathname == '/' && url == '/home') {
       return true;
     } else {
@@ -47,29 +58,31 @@ class BaseLayout extends React.Component {
   }
   render() {
     return (
-      <div className={styles.baseLayout}>
-      <TabBar
-        unselectedTintColor="#333"
-        tintColor="#ef5f55"
-        barTintColor="white"
-        tabBarPosition='bottom'
-      >
-        {
-          TabBarData.map(t => {
-            const isSelect = this.isTabBarSelect(t.url);
-            return  (<TabBar.Item
+      <div className='baseLayout'>
+        <TabBar
+          unselectedTintColor="#333"
+          tintColor="#ef5f55"
+          barTintColor="white"
+          tabBarPosition='bottom'
+        >
+          {
+            TabBarData.map(t => {
+              const isSelect = this.isTabBarSelect(t.url);
+              return (<TabBar.Item
                 title={t.name}
                 key={t.id}
                 icon={<div style={{
                   width: '22px',
                   height: '22px',
-                  background: `url(${t.icon}) center center /  21px 21px no-repeat` }}
+                  background: `url(${t.icon}) center center /  21px 21px no-repeat`
+                }}
                 />
                 }
                 selectedIcon={<div style={{
                   width: '22px',
                   height: '22px',
-                  background: `url(${t.selectedicon}) center center /  21px 21px no-repeat` }}
+                  background: `url(${t.selectedicon}) center center /  21px 21px no-repeat`
+                }}
                 />
                 }
                 // badge={1}
@@ -81,10 +94,10 @@ class BaseLayout extends React.Component {
               >
                 {isSelect && this.props.children}
               </TabBar.Item>
-            )
-          })
-        }
-      </TabBar>
+              )
+            })
+          }
+        </TabBar>
       </div>
     );
   }

@@ -1,17 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component, ReactElement } from 'react'
 import { connect } from 'dva';
 import { Modal, Toast } from 'antd-mobile';
 import NameCard from '../../components/name-card';
-import OrderStatus from '../../components/order-status';
 import router from 'umi/router';
 import styles from './index.less';
 
+
+interface props{
+  dispatch:Function;
+
+}
+interface state{
+  not_login:number|boolean;
+  avatar:any;
+  name:string;
+}
+
 @connect(({ my }) => ({ my }))
-class MyIndex extends Component {
+class MyIndex extends Component<props,state> {
   constructor(props) {
     super(props);
     this.state = {
-      nowdata: 0,
       name: '登录/注册',
       avatar:'',
       not_login: false
@@ -29,7 +38,6 @@ class MyIndex extends Component {
     }
   }
   render() {
-    const { my } = this.props;
     const { not_login } = this.state;
     return (
       <div className={styles.content_me}>
@@ -41,7 +49,10 @@ class MyIndex extends Component {
         <div className={styles.service_info + ' ' + 'box_shadow'}>
           <div className={styles.service_content}>
           <div className={styles.service_item} onClick={() => {
-              Toast.info('努力建设中！', 1);
+              Modal.alert( '确定退出吗？','', [
+                { text: '取消', onPress: () => console.log('cancel') },
+                { text: '朕决定了', onPress: () => router.push('/login') },
+              ])
             }}>
               <img
                 className={styles.service_img}

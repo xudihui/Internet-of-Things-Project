@@ -3,9 +3,15 @@ import BaseLayout from './baseLayout';
 
 const ULR_NO_LAYOUT = ['/', '/home', '/info', '/my','/control'];
 
-class Index extends Component {
-  componentDidMount() {
-  }
+interface location {
+  pathname: string
+}
+
+interface props {
+  location: location;
+}
+
+class Index extends Component<props>{
   renderBody = () => {
     const {location: {pathname}, children } = this.props;
     if (ULR_NO_LAYOUT.includes(pathname)) {

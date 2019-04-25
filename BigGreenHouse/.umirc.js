@@ -1,9 +1,10 @@
 const path = require('path');
 
-const server = 'http://localhost:3000';
 
 // ref: https://umijs.org/config/
 export default {
+  publicPath:'',
+  history: 'hash',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
@@ -11,6 +12,7 @@ export default {
       dva: true,
       dynamicImport: false,
       dll: true,
+      fastClick: true,
       routes: {
         exclude: [
           /model\.(j|t)sx?$/,
@@ -31,11 +33,4 @@ export default {
         // themes:path.resolve(__dirname,'src/themes'),
         images:path.resolve(__dirname,'src/assets')
   },
-  // proxy: {
-  //   "/api": {
-  //     "target": 'http://192.168.2.120:8081',
-  //     "changeOrigin": true,
-  //     "pathRewrite": { "^/api" : "/api" }
-  //   }
-  // }
 }
