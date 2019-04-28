@@ -36,7 +36,7 @@ const data:data[] = [
 const data2:data[] = [
   {
     name: '温湿度',
-    value: Math.floor(Math.random() * 100)
+    value: `30℃/${Math.floor(Math.random() * 100)}%`
   },
   {
     name: '光照度',
