@@ -14,19 +14,15 @@ interface state{
 const data:data[] = [
   {
     name: '温湿度1',
-    value: Math.floor(Math.random() * 100)
-  },
-  {
-    name: '温湿度2',
-    value: Math.floor(Math.random() * 100)
+    value: '30℃/35%'
   },
   {
     name: '土壤温湿度1',
-    value: Math.floor(Math.random() * 100)
+    value: `30℃/${Math.floor(Math.random() * 100)}%`
   },
   {
     name: '土壤温湿度2',
-    value: Math.floor(Math.random() * 100)
+    value: `30℃/${Math.floor(Math.random() * 100)}%`
   },
   {
     name: '二氧化碳1',

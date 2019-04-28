@@ -1,12 +1,14 @@
 import React, { Component, ReactElement } from 'react'
-import { Flex, List } from 'antd-mobile'
+import { Flex, List, Toast } from 'antd-mobile'
 
 const EXT = arr => {
   return (
     <Flex>
       {arr.map(item => {
         return (
-          <Flex.Item>
+          <Flex.Item onClick={()=>{
+            Toast.info(`${item}按钮努力建设中！`, 2);
+          }}>
             <p>{item}</p>
           </Flex.Item>
         )
